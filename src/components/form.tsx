@@ -33,7 +33,7 @@ export function ContactForm() {
       className="flex flex-col space-y-4 w-96 p-8 bg-white dark:bg-zinc-900 rounded-lg shadow-md"
       onSubmit={handleSubmit}
     >
-      {/* <input type="hidden" name="form-name" value="contact" /> */}
+      <input type="hidden" name="form-name" value="contact" />
 
       {/* Campo honeypot */}
       <input id="bot-field" name="bot-field" placeholder="Não preencha se for humano" hidden />
