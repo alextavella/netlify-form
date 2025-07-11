@@ -1,7 +1,7 @@
-const siteId = '9658a9c0-e456-417a-a72c-518278cb634a';
+const form_id = '6871212d2eebf00008d8d6a2';
 
 export async function GET(_: Request) {
-  const submissions = await fetch(`https://api.netlify.com/api/v1/sites/${siteId}/submissions`, {
+  const submissions = await fetch(`https://api.netlify.com/api/v1/forms/${form_id}/submissions`, {
     headers: {
       Authorization: `Bearer ${process.env.NETLIFY_API_KEY}`,
     },
