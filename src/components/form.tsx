@@ -12,6 +12,12 @@ export function ContactForm() {
     const myForm = event.target as HTMLFormElement;
     const formData = new FormData(myForm);
 
+    // Se o honeypot foi preenchido, bloqueia
+    if (formData.get('bot-field')) {
+      console.log('Bot detectado 🚫');
+      return;
+    }
+
     fetch('/__contact.html', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -27,7 +33,10 @@ export function ContactForm() {
       className="flex flex-col space-y-4 w-96 p-8 bg-white dark:bg-zinc-900 rounded-lg shadow-md"
       onSubmit={handleSubmit}
     >
-      <input type="hidden" name="form-name" value="contact" />
+      {/* <input type="hidden" name="form-name" value="contact" /> */}
+
+      {/* Campo honeypot */}
+      <input id="bot-field" name="bot-field" placeholder="Não preencha se for humano" hidden />
 
       <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 inline-flex gap-2 items-center">
         <EditIcon /> Contact
