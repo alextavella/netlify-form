@@ -12,10 +12,10 @@ export function ContactForm() {
     const myForm = event.target as HTMLFormElement;
     const formData = new FormData(myForm);
 
-    fetch('/', {
+    fetch('/__contact.html', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: formData,
+      body: new URLSearchParams(formData as any).toString(),
     }).catch((error) => alert(error));
 
     router.push('/thanks');
@@ -24,7 +24,6 @@ export function ContactForm() {
   return (
     <form
       name="contact"
-      data-netlify="true"
       className="flex flex-col space-y-4 w-96 p-8 bg-white dark:bg-zinc-900 rounded-lg shadow-md"
       onSubmit={handleSubmit}
     >
