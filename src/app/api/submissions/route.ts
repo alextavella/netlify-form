@@ -1,15 +1,12 @@
-import { NetlifyAPI } from '@netlify/api';
+import { netlifyClient } from '@/lib/netlify';
 
 const siteName = 'at-netlify-form';
 
 export async function GET(_: Request) {
-  const netlifyClient = new NetlifyAPI(process.env.NETLIFY_API_KEY);
+  console.log('[netlifyClient]', netlifyClient.host);
 
   const sites = await netlifyClient.listSites().catch(() => []);
-  console.log('[sites]', sites);
-
   const site_id = sites.find((site) => site.name === siteName)?.id;
-  console.log('[site_id]', site_id);
 
   if (!site_id) {
     return new Response(JSON.stringify({ submissions: [] }));
